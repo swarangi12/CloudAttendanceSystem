@@ -57,7 +57,7 @@ rich==15.0.0
 six==1.17.0
 soupsieve==2.8.4
 sympy==1.14.0
-tensorflow==2.21.0
+tensorflow-cpu==2.20.0
 termcolor==3.3.0
 tf_keras==2.21.0
 tqdm==4.68.3
