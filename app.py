@@ -6,6 +6,7 @@ from openpyxl import Workbook
 from flask import send_file
 import subprocess
 from flask import redirect
+import sys
 
 app = Flask(__name__)
 
@@ -36,8 +37,23 @@ def home():
 # LOGIN
 # ===================================================
 
-@app.route("/login")
+@app.route("/login", methods=["GET", "POST"])
 def login():
+
+    if request.method == "POST":
+
+        username = request.form["username"]
+        password = request.form["password"]
+
+        if username == "admin" and password == "admin123":
+            return redirect("/dashboard")
+
+        else:
+            return render_template(
+                "login.html",
+                error="Invalid Username or Password"
+            )
+
     return render_template("login.html")
 
 
@@ -54,10 +70,10 @@ def dashboard():
     today = datetime.now().date()
 
     cursor.execute("""
-    SELECT COUNT(*)
-    FROM attendance
-    WHERE date=%s
-    AND status='Present'
+        SELECT COUNT(*)
+        FROM attendance
+        WHERE date=%s
+        AND status='Present'
     """, (today,))
 
     present = cursor.fetchone()[0]
@@ -263,8 +279,9 @@ def attendance():
     )
 @app.route("/start_attendance")
 def start_attendance():
+    print("Flask Python:", sys.executable)
 
-    subprocess.run(["python", "recognize.py"])
+    subprocess.run([sys.executable, "recognize.py"])
 
     return redirect("/attendance")
 
