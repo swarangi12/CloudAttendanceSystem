@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+
+        body{
+            background:#eef2f7;
+        }
+
+        .header{
+            background:#2c3e50;
+            color:white;
+            padding:20px;
+            text-align:center;
+        }
+
+        .container{
+            width:90%;
+            margin:30px auto;
+        }
+
+        .cards{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+            gap:20px;
+        }
+
+        .card{
+            background:white;
+            border-radius:10px;
+            padding:25px;
+            text-align:center;
+            box-shadow:0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .card h3{
+            color:#555;
+            margin-bottom:15px;
+        }
+
+        .card h1{
+            color:#007BFF;
+            font-size:40px;
+        }
+
+        .menu{
+            margin-top:40px;
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+            gap:20px;
+        }
+
+        .menu a{
+            background:#007BFF;
+            color:white;
+            text-decoration:none;
+            text-align:center;
+            padding:15px;
+            border-radius:8px;
+            font-size:18px;
+            transition:0.3s;
+        }
+
+        .menu a:hover{
+            background:#0056b3;
+        }
+
+        footer{
+            margin-top:50px;
+            text-align:center;
+            color:gray;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<div class="header">
+    <h1>Cloud Based Student Attendance Management System</h1>
+    <p>Face Recognition Attendance System</p>
+</div>
+
+<div class="container">
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>👨‍🎓 Total Students</h3>
+            <h1>{{ total_students }}</h1>
+        </div>
+
+        <div class="card">
+            <h3>✅ Present Today</h3>
+            <h1>{{ present }}</h1>
+        </div>
+
+        <div class="card">
+            <h3>❌ Absent Today</h3>
+            <h1>{{ absent }}</h1>
+        </div>
+
+        <div class="card">
+            <h3>📅 Today's Date</h3>
+            <h1 style="font-size:22px;">{{ today }}</h1>
+        </div>
+
+    </div>
+
+    <div class="menu">
+
+        <a href="/register">
+            ➕ Register Student
+        </a>
+
+        <a href="/students">
+            👨‍🎓 Student List
+        </a>
+
+        <a href="/attendance">
+            ✅ Attendance
+        </a>
+
+        <a href="/report">
+            📊 Reports
+        </a>
+        <a href="/logout">
+            <a href="/start_attendance">
+    <button style="
+        background:green;
+        color:white;
+        padding:12px;
+        border:none;
+        border-radius:5px;
+        cursor:pointer;">
+        🎥 Start Face Attendance
+    </button>
+</a>
+    Logout
+</a>
+
+    </div>
+
+</div>
+
+<footer>
+
+<p>
+Developed using Flask • MySQL • OpenCV • Face Recognition
+</p>
+
+</footer>
+
+</body>
+</html>

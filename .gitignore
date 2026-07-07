@@ -1,0 +1,6 @@
+ai_env/
+venv/
+__pycache__/
+*.pyc
+temp.jpg
+haarcascade_frontalface_default.xml
