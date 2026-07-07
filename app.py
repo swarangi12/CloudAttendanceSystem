@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect
 import mysql.connector
 from datetime import datetime
-from camera import capture_student
+#from camera import capture_student
 from openpyxl import Workbook
 from flask import send_file
 import subprocess
@@ -246,10 +246,11 @@ def delete_student(roll):
 # CAPTURE FACE
 # ===================================================
 
-@app.route("/capture/<roll>")
-def capture_face(roll):
-
-    capture_student(roll)
+@app.route('/capture')
+def capture():
+    from camera import capture_student
+    capture_student()
+    
 
     return """
     <h2>Face Captured Successfully!</h2>
