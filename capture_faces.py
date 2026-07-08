@@ -1,46 +1,39 @@
 import cv2
 import os
 
-# Ask for student's roll number
-roll = input("Enter Student Roll Number: ")
+def capture_student():
+    roll = input("Enter Student Roll Number: ")
 
-# Create folder path
-folder = os.path.join("dataset", roll)
+    folder = os.path.join("dataset", roll)
+    os.makedirs(folder, exist_ok=True)
 
-# Create folder if it doesn't exist
-os.makedirs(folder, exist_ok=True)
+    camera = cv2.VideoCapture(0)
 
-# Open webcam
-camera = cv2.VideoCapture(0)
+    if not camera.isOpened():
+        print("Cannot open camera")
+        return
 
-count = 0
+    count = 0
 
-print("Capturing Images...")
+    print("Capturing Images...")
 
-while count < 30:
+    while count < 30:
+        success, frame = camera.read()
 
-    success, frame = camera.read()
+        if not success:
+            break
 
-    if not success:
-        break
+        cv2.imshow("Capture Face", frame)
 
-    # Display camera
-    cv2.imshow("Capture Face", frame)
+        image_path = os.path.join(folder, f"{count+1}.jpg")
+        cv2.imwrite(image_path, frame)
 
-    # Save image
-    image_path = os.path.join(folder, f"{count+1}.jpg")
-    cv2.imwrite(image_path, frame)
+        count += 1
 
-    count += 1
+        if cv2.waitKey(300) & 0xFF == ord('q'):
+            break
 
-    print(f"Captured Image {count}")
+    camera.release()
+    cv2.destroyAllWindows()
 
-    # Wait 300 milliseconds
-    cv2.waitKey(300)
-
-# Release camera
-camera.release()
-
-cv2.destroyAllWindows()
-
-print("30 Images Saved Successfully!")
+    print("30 Images Saved Successfully!")

@@ -1,11 +1,6 @@
 import cv2
 import os
 
-# Load face detector
-face_detector = cv2.CascadeClassifier(
-    "haarcascade_frontalface_default.xml"
-)
-
 def capture_student(roll):
 
     folder = os.path.join("dataset", str(roll))
@@ -15,51 +10,22 @@ def capture_student(roll):
 
     count = 0
 
-    while True:
+    while count < 30:
 
         success, frame = camera.read()
 
         if not success:
             break
 
-        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-
-        faces = face_detector.detectMultiScale(
-            gray,
-            scaleFactor=1.3,
-            minNeighbors=5
-        )
-
-        for (x, y, w, h) in faces:
-
-            face = frame[y:y+h, x:x+w]
-
-            count += 1
-
-            filename = os.path.join(
-                folder,
-                f"{count}.jpg"
-            )
-
-            cv2.imwrite(filename, face)
-
-            cv2.rectangle(
-                frame,
-                (x, y),
-                (x+w, y+h),
-                (0,255,0),
-                2
-            )
-
         cv2.imshow("Capture Face", frame)
 
-        if cv2.waitKey(1) == ord('q'):
-            break
+        image_path = os.path.join(folder, f"{count+1}.jpg")
+        cv2.imwrite(image_path, frame)
 
-        if count >= 30:
+        count += 1
+
+        if cv2.waitKey(300) & 0xFF == ord('q'):
             break
 
     camera.release()
     cv2.destroyAllWindows()
-
-    return True

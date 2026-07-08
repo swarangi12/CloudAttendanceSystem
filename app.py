@@ -247,19 +247,14 @@ def delete_student(roll):
 # CAPTURE FACE
 # ===================================================
 
-@app.route('/capture')
-def capture():
+@app.route('/capture/<roll>')
+def capture(roll):
     from camera import capture_student
-    capture_student()
+
+    capture_student(roll)
+
+    return redirect("/students")
     
-
-    return """
-    <h2>Face Captured Successfully!</h2>
-
-    <a href='/students'>
-    Back to Students
-    </a>
-    """
 
 
 # ===================================================
