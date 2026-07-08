@@ -4,3 +4,5 @@ __pycache__/
 *.pyc
 temp.jpg
 haarcascade_frontalface_default.xml
+.env
+Attendance_Report.xlsx
