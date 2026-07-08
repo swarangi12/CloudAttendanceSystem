@@ -1,6 +1,5 @@
-def capture_student():
-    import cv2
-    import os
+import cv2
+import os
 
 # Load face detector
 face_detector = cv2.CascadeClassifier(

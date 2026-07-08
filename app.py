@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect
 import mysql.connector
 from datetime import datetime
-#from camera import capture_student
+from camera import capture_student
 from openpyxl import Workbook
 from flask import send_file
 import subprocess
@@ -15,11 +15,10 @@ app = Flask(__name__)
 # MySQL Connection
 # ----------------------------
 db = mysql.connector.connect(
-    host=os.environ.get("MYSQLHOST"),
-    user=os.environ.get("MYSQLUSER"),
-    password=os.environ.get("MYSQLPASSWORD"),
-    database=os.environ.get("MYSQLDATABASE"),
-    port=os.environ.get("MYSQLPORT")
+    host="localhost",
+    user="root",
+    password="swarangi@12",
+    database="attendance_system"
 )
 
 cursor = db.cursor()
@@ -81,6 +80,8 @@ def dashboard():
     present = cursor.fetchone()[0]
 
     absent = total_students - present
+    print("Today's date:", today)
+    print("Present count:", present)
 
     return render_template(
         "dashboard.html",
