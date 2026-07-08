@@ -8,13 +8,14 @@ from deepface import DeepFace
 # MySQL Connection
 # ----------------------------
 db = mysql.connector.connect(
-    host="localhost",
+    host="hayabusa.proxy.rlwy.net",
     user="root",
-    password="swarangi@12",
-    database="attendance_system"
+    password="GqmWGnhrfmlUfuZZivapKyICESuHyUco",
+    database="railway",
+    port=18249
 )
 
-cursor = db.cursor()
+
 
 cap = cv2.VideoCapture(0)
 
