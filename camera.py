@@ -6,6 +6,9 @@ def capture_student(roll):
     folder = os.path.join("dataset", str(roll))
     os.makedirs(folder, exist_ok=True)
 
+
+
+
     camera = cv2.VideoCapture(0)
 
     count = 0

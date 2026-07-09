@@ -7,6 +7,9 @@ def capture_student():
     folder = os.path.join("dataset", roll)
     os.makedirs(folder, exist_ok=True)
 
+
+
+
     camera = cv2.VideoCapture(0)
 
     if not camera.isOpened():

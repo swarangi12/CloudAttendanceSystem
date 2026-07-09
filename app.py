@@ -280,7 +280,9 @@ def attendance():
 def start_attendance():
     print("Flask Python:", sys.executable)
 
-    subprocess.run([sys.executable, "recognize.py"])
+    # Start recognize.py in a non-blocking process
+    subprocess.Popen([sys.executable, "recognize.py"])
+
 
     return redirect("/attendance")
 
