@@ -15,23 +15,13 @@ app = Flask(__name__)
 # MySQL Connection
 # ----------------------------
 db = mysql.connector.connect(
-    host=os.getenv("MYSQLHOST", "localhost"),
-    user=os.getenv("MYSQLUSER", "root"),
-    password=os.getenv("MYSQLPASSWORD", "GqmWGnhrfmlUfuZZivapKyICESuHyUco"),
-    database=os.getenv("MYSQLDATABASE", "attendance_system"),
-    port=int(os.getenv("MYSQLPORT", "3306"))
+    host="localhost",
+    user="root",
+    password="swarangi@12",
+    database="attendance_system"
 )
+
 cursor = db.cursor()
-cursor.execute("SHOW FULL TABLES")
-print(cursor.fetchall())
-
-cursor.execute("SELECT DATABASE()")
-print(cursor.fetchone())
-
-cursor.execute("SELECT @@hostname")
-print(cursor.fetchone())
-
-
 
 print("Database Connected Successfully!")
 
